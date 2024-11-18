@@ -128,6 +128,15 @@ extension Parameter.Kind {
     }
 }
 
+extension icalparameter_kind: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_kind {
+    /// wrap
+    /// - Returns: Parameter.Kind
+    internal func wrap() -> Parameter.Kind {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_action
 extension Parameter {
     /// Wrap<icalparameter_action>
@@ -143,6 +152,15 @@ extension Parameter.Action {
     public static var ABORT: Parameter.Action { .init(rawValue: ICAL_ACTIONPARAM_ABORT) }
     /// ICAL_ACTIONPARAM_NONE
     public static var NONE: Parameter.Action { .init(rawValue: ICAL_ACTIONPARAM_NONE) }
+}
+
+extension icalparameter_action: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_action {
+    /// wrap
+    /// - Returns: Parameter.Action
+    internal func wrap() -> Parameter.Action {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_cutype
@@ -168,6 +186,16 @@ extension Parameter.CUType {
     public static var NONE: Parameter.CUType { .init(rawValue: ICAL_CUTYPE_NONE) }
 }
 
+extension icalparameter_cutype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_cutype {
+    /// wrap
+    /// - Returns: Parameter.CUType
+    internal func wrap() -> Parameter.CUType {
+        return .init(rawValue: base)
+    }
+}
+
+
 // MARK: - icalparameter_display
 extension Parameter {
     /// Wrap<icalparameter_display>
@@ -189,6 +217,16 @@ extension Parameter.Display {
     public static var NONE: Parameter.Display { .init(rawValue: ICAL_DISPLAY_NONE) }
 }
 
+extension icalparameter_display: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_display {
+    /// wrap
+    /// - Returns: Parameter.Display
+    internal func wrap() -> Parameter.Display {
+        return .init(rawValue: base)
+    }
+}
+
+
 // MARK: - icalparameter_enable
 extension Parameter {
     /// Wrap<icalparameter_enable>
@@ -206,6 +244,15 @@ extension Parameter.Enable {
     public static var NONE: Parameter.Enable { .init(rawValue: ICAL_ENABLE_NONE) }
 }
 
+extension icalparameter_enable: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_enable {
+    /// wrap
+    /// - Returns: Parameter.Enable
+    internal func wrap() -> Parameter.Enable {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_encoding
 extension Parameter {
     /// Wrap<icalparameter_encoding>
@@ -221,6 +268,15 @@ extension Parameter.Encoding {
     public static var BASE64: Parameter.Encoding { .init(rawValue: ICAL_ENCODING_BASE64) }
     /// ICAL_ENCODING_NONE
     public static var NONE: Parameter.Encoding { .init(rawValue: ICAL_ENCODING_NONE) }
+}
+
+extension icalparameter_encoding: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_encoding {
+    /// wrap
+    /// - Returns: Parameter.Encoding
+    internal func wrap() -> Parameter.Encoding {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_fbtype
@@ -242,7 +298,15 @@ extension Parameter.FbType {
     public static var BUSYTENTATIVE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_BUSYTENTATIVE) }
     /// ICAL_FBTYPE_NONE
     public static var NONE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_NONE) }
+}
 
+extension icalparameter_fbtype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_fbtype {
+    /// wrap
+    /// - Returns: Parameter.FbType
+    internal func wrap() -> Parameter.FbType {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_feature
@@ -273,6 +337,15 @@ extension Parameter.Feature {
     public static var NONE: Parameter.Feature { .init(rawValue: ICAL_FEATURE_NONE) }
 }
 
+extension icalparameter_feature: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_feature {
+    /// wrap
+    /// - Returns: Parameter.Feature
+    internal func wrap() -> Parameter.Feature {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_local
 extension Parameter {
     ///  Wrap<icalparameter_local>
@@ -288,6 +361,15 @@ extension Parameter.Local {
     public static var FALSE: Parameter.Local { .init(rawValue: ICAL_LOCAL_FALSE) }
     /// ICAL_LOCAL_NONE
     public static var NONE: Parameter.Local { .init(rawValue: ICAL_LOCAL_NONE) }
+}
+
+extension icalparameter_local: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_local {
+    /// wrap
+    /// - Returns: Parameter.Local
+    internal func wrap() -> Parameter.Local {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - Wrap<icalparameter_partstat>
@@ -319,6 +401,16 @@ extension Parameter.Partstat {
     public static var NONE: Parameter.Partstat { .init(rawValue: ICAL_PARTSTAT_NONE) }
 }
 
+extension icalparameter_partstat: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_partstat {
+    /// wrap
+    /// - Returns: Parameter.Partstat
+    internal func wrap() -> Parameter.Partstat {
+        return .init(rawValue: base)
+    }
+}
+
+
 // MARK: - icalparameter_patchaction
 extension Parameter {
     /// Wrap<icalparameter_patchaction>
@@ -340,6 +432,15 @@ extension Parameter.PatchAction {
     public static var NONE: Parameter.PatchAction { .init(rawValue: ICAL_PATCHACTION_NONE) }
 }
 
+extension icalparameter_patchaction: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_patchaction {
+    /// wrap
+    /// - Returns: Parameter.PatchAction
+    internal func wrap() -> Parameter.PatchAction {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_range
 extension Parameter {
     /// Wrap<icalparameter_range>
@@ -357,6 +458,15 @@ extension Parameter.Range {
     public static var NONE: Parameter.Range { .init(rawValue: ICAL_RANGE_NONE) }
 }
 
+extension icalparameter_range: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_range {
+    /// wrap
+    /// - Returns: Parameter.Range
+    internal func wrap() -> Parameter.Range {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_related
 extension Parameter {
     /// Wrap<icalparameter_related>
@@ -372,6 +482,15 @@ extension Parameter.Related {
     public static var END: Parameter.Related { .init(rawValue: ICAL_RELATED_END) }
     /// ICAL_RELATED_NONE
     public static var NONE: Parameter.Related { .init(rawValue: ICAL_RELATED_NONE) }
+}
+
+extension icalparameter_related: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_related {
+    /// wrap
+    /// - Returns: Parameter.Related
+    internal func wrap() -> Parameter.Related {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_reltype
@@ -395,6 +514,15 @@ extension Parameter.RelType {
     public static var NONE: Parameter.RelType { .init(rawValue: ICAL_RELTYPE_NONE) }
 }
 
+extension icalparameter_reltype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_reltype {
+    /// wrap
+    /// - Returns: Parameter.RelType
+    internal func wrap() -> Parameter.RelType {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_required
 extension Parameter {
     /// Wrap<icalparameter_required>
@@ -410,6 +538,15 @@ extension Parameter.Required {
     public static var FALSE: Parameter.Required { .init(rawValue: ICAL_REQUIRED_FALSE) }
     /// ICAL_REQUIRED_NONE
     public static var NONE: Parameter.Required { .init(rawValue: ICAL_REQUIRED_NONE) }
+}
+
+extension icalparameter_required: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_required {
+    /// wrap
+    /// - Returns: Parameter.Required
+    internal func wrap() -> Parameter.Required {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_role
@@ -433,6 +570,15 @@ extension Parameter.Role {
     public static var NONE: Parameter.Role { .init(rawValue: ICAL_ROLE_NONE) }
 }
 
+extension icalparameter_role: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_role {
+    /// wrap
+    /// - Returns: Parameter.Role
+    internal func wrap() -> Parameter.Role {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_rsvp
 extension Parameter {
     /// Wrap<icalparameter_rsvp>
@@ -448,7 +594,15 @@ extension Parameter.RSVP {
     public static var FALSE: Parameter.RSVP { .init(rawValue: ICAL_RSVP_FALSE) }
     /// ICAL_RSVP_NONE
     public static var NONE: Parameter.RSVP { .init(rawValue: ICAL_RSVP_NONE) }
+}
 
+extension icalparameter_rsvp: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_rsvp {
+    /// wrap
+    /// - Returns: Parameter.RSVP
+    internal func wrap() -> Parameter.RSVP {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_scheduleagent
@@ -468,6 +622,15 @@ extension Parameter.ScheduleAgent {
     public static var NONE: Parameter.ScheduleAgent { .init(rawValue: ICAL_SCHEDULEAGENT_NONE) }
 }
 
+extension icalparameter_scheduleagent: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_scheduleagent {
+    /// wrap
+    /// - Returns: Parameter.ScheduleAgent
+    internal func wrap() -> Parameter.ScheduleAgent {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_scheduleforcesend
 extension Parameter {
     /// Wrap<icalparameter_scheduleforcesend>
@@ -485,6 +648,15 @@ extension Parameter.ScheduleForceSend {
     public static var NONE: Parameter.ScheduleForceSend { .init(rawValue: ICAL_SCHEDULEFORCESEND_NONE) }
 }
 
+extension icalparameter_scheduleforcesend: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_scheduleforcesend {
+    /// wrap
+    /// - Returns: Parameter.ScheduleForceSend
+    internal func wrap() -> Parameter.ScheduleForceSend {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_stayinformed
 extension Parameter {
     /// Wrap<icalparameter_stayinformed>
@@ -500,7 +672,15 @@ extension Parameter.StayInformed {
     public static var FALSE: Parameter.StayInformed { .init(rawValue: ICAL_STAYINFORMED_FALSE) }
     /// ICAL_STAYINFORMED_NONE
     public static var NONE: Parameter.StayInformed { .init(rawValue: ICAL_STAYINFORMED_NONE) }
+}
 
+extension icalparameter_stayinformed: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_stayinformed {
+    /// wrap
+    /// - Returns: Parameter.StayInformed
+    internal func wrap() -> Parameter.StayInformed {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_substate
@@ -520,6 +700,15 @@ extension Parameter.Substate {
     public static var SUSPENDED: Parameter.Substate { .init(rawValue: ICAL_SUBSTATE_SUSPENDED) }
     /// ICAL_SUBSTATE_NONE
     public static var NONE: Parameter.Substate { .init(rawValue: ICAL_SUBSTATE_NONE) }
+}
+
+extension icalparameter_substate: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_substate {
+    /// wrap
+    /// - Returns: Parameter.Substate
+    internal func wrap() -> Parameter.Substate {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_value
@@ -564,6 +753,15 @@ extension Parameter.Value {
     public static var NONE: Parameter.Value { .init(rawValue: ICAL_VALUE_NONE) }
 }
 
+extension icalparameter_value: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_value {
+    /// wrap
+    /// - Returns: Parameter.Value
+    internal func wrap() -> Parameter.Value {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalparameter_xliccomparetype
 extension Parameter {
     /// Wrap<icalparameter_xliccomparetype>
@@ -593,7 +791,15 @@ extension Parameter.XlicCompareType {
     public static var ISNOTNULL: Parameter.XlicCompareType { .init(rawValue: ICAL_XLICCOMPARETYPE_ISNOTNULL) }
     /// ICAL_XLICCOMPARETYPE_NONE
     public static var NONE: Parameter.XlicCompareType { .init(rawValue: ICAL_XLICCOMPARETYPE_NONE) }
+}
 
+extension icalparameter_xliccomparetype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_xliccomparetype {
+    /// wrap
+    /// - Returns: Parameter.XlicCompareType
+    internal func wrap() -> Parameter.XlicCompareType {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalparameter_xlicerrortype
@@ -625,5 +831,13 @@ extension Parameter.XlicErrorType {
     public static var VCALPROPPARSEERROR: Parameter.XlicErrorType { .init(rawValue: ICAL_XLICERRORTYPE_VCALPROPPARSEERROR) }
     /// ICAL_XLICERRORTYPE_NONE
     public static var NONE: Parameter.XlicErrorType { .init(rawValue: ICAL_XLICERRORTYPE_NONE) }
+}
 
+extension icalparameter_xlicerrortype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalparameter_xlicerrortype {
+    /// wrap
+    /// - Returns: Parameter.XlicErrorType
+    internal func wrap() -> Parameter.XlicErrorType {
+        return .init(rawValue: base)
+    }
 }

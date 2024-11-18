@@ -8,37 +8,38 @@
 import Foundation
 import libical
 
-extension Date: CompatibleValue {}
-extension CompatibleWrapper where Base == Date {
-    
-    /// from
-    /// - Parameter icaltimetype: icaltimetype
-    /// - Returns: Optional<Date>
-    internal static func from(_ icaltimetype: icaltimetype) -> Optional<Date> {
+extension icaltimetype: CompatibleValue {}
+extension CompatibleWrapper where Base == icaltimetype {
+
+    /// toDate
+    /// - Returns: Date
+    internal func wrap() -> Date {
         var cmpts: DateComponents = .init()
-        cmpts.year      = Int(icaltimetype.year)
-        cmpts.month     = Int(icaltimetype.month)
-        cmpts.day       = Int(icaltimetype.day)
-        cmpts.hour      = Int(icaltimetype.hour)
-        cmpts.minute    = Int(icaltimetype.minute)
-        cmpts.second    = Int(icaltimetype.second)
-        if let newValue = icaltimetype.zone.pointee.tzid, let tz: TimeZone = .init(identifier: String(cString: newValue)) {
-            cmpts.timeZone = tz
+        cmpts.calendar  = .current
+        cmpts.year      = Int(base.year)
+        cmpts.month     = Int(base.month)
+        cmpts.day       = Int(base.day)
+        cmpts.hour      = Int(base.hour)
+        cmpts.minute    = Int(base.minute)
+        cmpts.second    = Int(base.second)
+        if let zone = base.zone {
+            cmpts.timeZone = zone.pointee.hub.wrap()
         } else {
             cmpts.timeZone = .init(abbreviation: "UTC")
         }
-        let calendar: Calendar
-        if cmpts.timeZone?.identifier == "UTC" {
-            calendar = .init(identifier: .gregorian)
-        } else {
-            calendar = .current
-        }
-        if let date: Date = calendar.date(from: cmpts) {
-            return date
-        } else {
-            return .none
-        }
+        return cmpts.date!
     }
+}
+
+// MARK: - icaltimezone
+extension icaltimezone: CompatibleValue {}
+extension CompatibleWrapper where Base == icaltimezone {
     
-  
+    /// wrap
+    /// - Returns: TimeZone
+    internal func wrap() -> Foundation.TimeZone {
+        guard let element = base.tzid else { return .init(secondsFromGMT: 0)! }
+        let tzid: String = .init(cString: element)
+        return .init(identifier: tzid) ?? .init(secondsFromGMT: 0)!
+    }
 }

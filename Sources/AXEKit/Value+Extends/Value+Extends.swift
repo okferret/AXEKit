@@ -89,5 +89,13 @@ extension Value.Kind {
     public static var XLICCLASS: Value.Kind { .init(rawValue: ICAL_XLICCLASS_VALUE) }
     /// ICAL_NO_VALUE
     public static var NO: Value.Kind { .init(rawValue: ICAL_NO_VALUE) }
+}
 
+extension icalvalue_kind: CompatibleValue {}
+extension CompatibleWrapper where Base == icalvalue_kind {
+    /// wrap
+    /// - Returns: Value.Kind
+    internal func wrap() -> Value.Kind {
+        return .init(rawValue: base)
+    }
 }

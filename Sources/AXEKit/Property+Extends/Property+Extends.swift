@@ -9,7 +9,6 @@ import libical
 import Foundation
 
 extension Property {
-    
     /// Wrap<icalproperty_kind>
     public typealias Kind = Wrap<icalproperty_kind>
 }
@@ -283,6 +282,15 @@ extension Property.Kind {
     }
 }
 
+extension icalproperty_kind: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_kind {
+    /// wrap
+    /// - Returns: Property.Kind
+    internal func wrap() -> Property.Kind {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalproperty_action
 extension Property {
     /// Wrap<icalproperty_action>
@@ -304,6 +312,15 @@ extension Property.Action {
     public static var NONE: Property.Action { .init(rawValue: ICAL_ACTION_NONE) }
 }
 
+extension icalproperty_action: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_action {
+    /// wrap
+    /// - Returns: Property.Action
+    internal func wrap() -> Property.Action {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalproperty_busytype
 extension Property {
     /// Wrap<icalproperty_busytype>
@@ -321,6 +338,15 @@ extension Property.BusyType {
     public static var BUSYTENTATIVE: Property.BusyType { .init(rawValue: ICAL_BUSYTYPE_BUSYTENTATIVE) }
     /// ICAL_BUSYTYPE_NONE
     public static var NONE: Property.BusyType { .init(rawValue: ICAL_BUSYTYPE_NONE) }
+}
+
+extension icalproperty_busytype: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_busytype {
+    /// wrap
+    /// - Returns: Property.BusyType
+    internal func wrap() -> Property.BusyType {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_carlevel
@@ -342,6 +368,15 @@ extension Property.CarLevel {
     public static var NONE: Property.CarLevel { .init(rawValue: ICAL_CARLEVEL_NONE) }
 }
 
+extension icalproperty_carlevel: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_carlevel {
+    /// wrap
+    /// - Returns: Property.CarLevel
+    internal func wrap() -> Property.CarLevel {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalproperty_class
 extension Property {
     /// Wrap<icalproperty_class>
@@ -359,6 +394,15 @@ extension Property.Class {
     public static var CONFIDENTIAL: Property.Class { .init(rawValue: ICAL_CLASS_CONFIDENTIAL) }
     /// ICAL_CLASS_NONE
     public static var NONE: Property.Class { .init(rawValue: ICAL_CLASS_NONE) }
+}
+
+extension icalproperty_class: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_class {
+    /// wrap
+    /// - Returns: Property.Class
+    internal func wrap() -> Property.Class {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_cmd
@@ -397,6 +441,15 @@ extension Property.Command {
     /// ICAL_CMD_NONE
     public static var NONE: Property.Command { .init(rawValue: ICAL_CMD_NONE) }
     
+}
+
+extension icalproperty_cmd: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_cmd {
+    /// wrap
+    /// - Returns: Property.Command
+    internal func wrap() -> Property.Command {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_method
@@ -442,7 +495,15 @@ extension Property.Method {
     public static var POLLSTATUS: Property.Method { .init(rawValue: ICAL_METHOD_POLLSTATUS) }
     /// ICAL_METHOD_NONE
     public static var NONE: Property.Method { .init(rawValue: ICAL_METHOD_NONE) }
-    
+}
+
+extension icalproperty_method: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_method {
+    /// wrap
+    /// - Returns: Property.Method
+    internal func wrap() -> Property.Method {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_pollcompletion
@@ -466,6 +527,15 @@ extension Property.PollCompletion {
     public static var NONE: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_NONE) }
 }
 
+extension icalproperty_pollcompletion: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_pollcompletion {
+    /// wrap
+    /// - Returns: Property.PollCompletion
+    internal func wrap() -> Property.PollCompletion {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalproperty_pollmode
 extension Property {
     /// Wrap<icalproperty_pollmode>
@@ -479,6 +549,15 @@ extension Property.PollMode {
     public static var BASIC: Property.PollMode { .init(rawValue: ICAL_POLLMODE_BASIC) }
     /// ICAL_POLLMODE_NONE
     public static var NONE: Property.PollMode { .init(rawValue: ICAL_POLLMODE_NONE) }
+}
+
+extension icalproperty_pollmode: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_pollmode {
+    /// wrap
+    /// - Returns: Property.PollMode
+    internal func wrap() -> Property.PollMode {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_querylevel
@@ -496,6 +575,15 @@ extension Property.QueryLevel {
     public static var CALQLNONE: Property.QueryLevel { .init(rawValue: ICAL_QUERYLEVEL_CALQLNONE) }
     /// ICAL_QUERYLEVEL_NONE
     public static var NONE: Property.QueryLevel { .init(rawValue: ICAL_QUERYLEVEL_NONE) }
+}
+
+extension icalproperty_querylevel: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_querylevel {
+    /// wrap
+    /// - Returns: Property.QueryLevel
+    internal func wrap() -> Property.QueryLevel {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_status
@@ -533,7 +621,15 @@ extension Property.Status {
     public static var DELETED: Property.Status { .init(rawValue: ICAL_STATUS_DELETED) }
     /// ICAL_STATUS_NONE
     public static var NONE: Property.Status { .init(rawValue: ICAL_STATUS_NONE) }
-    
+}
+
+extension icalproperty_status: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_status {
+    /// wrap
+    /// - Returns: Property.Status
+    internal func wrap() -> Property.Status {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_taskmode
@@ -555,6 +651,15 @@ extension Property.TaskMode {
     public static var NONE: Property.TaskMode { .init(rawValue: ICAL_TASKMODE_NONE) }
 }
 
+extension icalproperty_taskmode: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_taskmode {
+    /// wrap
+    /// - Returns: Property.TaskMode
+    internal func wrap() -> Property.TaskMode {
+        return .init(rawValue: base)
+    }
+}
+
 // MARK: - icalproperty_transp
 extension Property {
     /// Wrap<icalproperty_transp>
@@ -574,6 +679,15 @@ extension Property.Transp {
     public static var TRANSPARENTNOCONFLICT: Property.Transp { .init(rawValue: ICAL_TRANSP_TRANSPARENTNOCONFLICT) }
     /// ICAL_TRANSP_NONE
     public static var NONE: Property.Transp { .init(rawValue: ICAL_TRANSP_NONE) }
+}
+
+extension icalproperty_transp: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_transp {
+    /// wrap
+    /// - Returns: Property.Transp
+    internal func wrap() -> Property.Transp {
+        return .init(rawValue: base)
+    }
 }
 
 // MARK: - icalproperty_xlicclass
@@ -641,5 +755,13 @@ extension Property.XlicClass {
     public static var UNKNOWN: Property.XlicClass { .init(rawValue: ICAL_XLICCLASS_UNKNOWN) }
     /// ICAL_XLICCLASS_NONE
     public static var NONE: Property.XlicClass { .init(rawValue: ICAL_XLICCLASS_NONE) }
-    
+}
+
+extension icalproperty_xlicclass: CompatibleValue {}
+extension CompatibleWrapper where Base == icalproperty_xlicclass {
+    /// wrap
+    /// - Returns: Property.XlicClass
+    internal func wrap() -> Property.XlicClass {
+        return .init(rawValue: base)
+    }
 }

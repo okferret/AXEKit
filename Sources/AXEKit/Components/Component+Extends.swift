@@ -8,13 +8,11 @@
 import libical
 
 extension Component {
-    
     /// Wrap<icalcomponent_kind>
      public typealias Kind = Wrap<icalcomponent_kind>
 }
 
 extension Component.Kind {
-    
     /// ICAL_NO_COMPONENT
     public static var NO: Component.Kind { .init(rawValue: ICAL_NO_COMPONENT) }
     /// ICAL_ANY_COMPONENT
@@ -87,5 +85,59 @@ extension Component.Kind {
         return [NO, ANY, XROOT, XATTACH, VEVENT, VTODO, VJOURNAL, VCALENDAR, VAGENDA, VFREEBUSY, VALARM, XAUDIOALARM, XDISPLAYALARM,
                 XEMAILALARM, XPROCEDUREALARM, VTIMEZONE, XSTANDARD, XDAYLIGHT, X, VSCHEDULE, VQUERY, VREPLY, VCAR, VCOMMAND, XLICINVALID,
                 XLICMIMEPART, VAVAILABILITY, XAVAILABLE, VPOLL, VVOTER, XVOTE, VPATCH, XPATCH]
+    }
+}
+
+extension icalcomponent_kind: CompatibleValue {}
+extension CompatibleWrapper where Base == icalcomponent_kind {
+    /// wrap
+    /// - Returns: Component.Kind
+    internal func wrap() -> Component.Kind {
+        return .init(rawValue: base)
+    }
+}
+
+extension Component {
+    
+    /// from cmpt
+    /// - Parameter cmpt: icalcomponent
+    /// - Returns: Component
+    internal static func from(_ cmpt: icalcomponent) -> Component {
+        switch icalcomponent_isa(cmpt).hub.wrap() {
+        case .NO:               return Component(rawValue: cmpt)
+        case .ANY:              return Component(rawValue: cmpt)
+        case .XROOT:            return Component(rawValue: cmpt)
+        case .XATTACH:          return Component(rawValue: cmpt)
+        case .VEVENT:           return Event(rawValue: cmpt)
+        case .VTODO:            return Todo(rawValue: cmpt)
+        case .VJOURNAL:         return Journal(rawValue: cmpt)
+        case .VCALENDAR:        return Calendar(rawValue: cmpt)
+        case .VAGENDA:          return Agenda(rawValue: cmpt)
+        case .VFREEBUSY:        return FreeBusy(rawValue: cmpt)
+        case .VALARM:           return Alarm(rawValue: cmpt)
+        case .XAUDIOALARM:      return Component(rawValue: cmpt)
+        case .XDISPLAYALARM:    return Component(rawValue: cmpt)
+        case .XEMAILALARM:      return Component(rawValue: cmpt)
+        case .XPROCEDUREALARM:  return Component(rawValue: cmpt)
+        case .VTIMEZONE:        return TimeZone(rawValue: cmpt)
+        case .XSTANDARD:        return XStandard(rawValue: cmpt)
+        case .XDAYLIGHT:        return XDaylight(rawValue: cmpt)
+        case .X:                return Component(rawValue: cmpt)
+        case .VSCHEDULE:        return Component(rawValue: cmpt)
+        case .VQUERY:           return Query(rawValue: cmpt)
+        case .VREPLY:           return Component(rawValue: cmpt)
+        case .VCAR:             return Component(rawValue: cmpt)
+        case .VCOMMAND:         return Component(rawValue: cmpt)
+        case .XLICINVALID:      return Component(rawValue: cmpt)
+        case .XLICMIMEPART:     return Component(rawValue: cmpt)
+        case .VAVAILABILITY:    return Availability(rawValue: cmpt)
+        case .XAVAILABLE:       return XAvailable(rawValue: cmpt)
+        case .VPOLL:            return Poll(rawValue: cmpt)
+        case .VVOTER:           return Voter(rawValue: cmpt)
+        case .XVOTE:            return XVote(rawValue: cmpt)
+        case .VPATCH:           return Patch(rawValue: cmpt)
+        case .XPATCH:           return XPatch(rawValue: cmpt)
+        default:                return Component(rawValue: cmpt)
+        }
     }
 }

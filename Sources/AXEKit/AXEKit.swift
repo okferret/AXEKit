@@ -83,3 +83,14 @@ public struct Wrap<T>: Hashable where T: RawRepresentable<UInt32> {
     
 }
 
+/// Error
+public enum AXError: Error, LocalizedError {
+    case custom(_ text: String)
+    
+    /// Optional<String>
+    public var errorDescription: Optional<String> {
+        switch self {
+        case .custom(let text): return text
+        }
+    }
+}
