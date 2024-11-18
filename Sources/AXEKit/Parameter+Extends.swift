@@ -14,7 +14,6 @@ extension Parameter {
 }
 
 extension Parameter.Kind {
-    
     /// ICAL_ANY_PARAMETER
     public static var ANY: Parameter.Kind { .init(rawValue: ICAL_ANY_PARAMETER) }
     /// ICAL_ACTIONPARAM_PARAMETER
@@ -227,22 +226,22 @@ extension Parameter.Encoding {
 // MARK: - icalparameter_fbtype
 extension Parameter {
     /// Wrap<icalparameter_fbtype>
-    public typealias FBType = Wrap<icalparameter_fbtype>
+    public typealias FbType = Wrap<icalparameter_fbtype>
 }
 
-extension Parameter.FBType {
+extension Parameter.FbType {
     /// ICAL_FBTYPE_X
-    public static var X: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_X) }
+    public static var X: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_X) }
     /// ICAL_FBTYPE_FREE
-    public static var FREE: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_FREE) }
+    public static var FREE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_FREE) }
     /// ICAL_FBTYPE_BUSY
-    public static var BUSY: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_BUSY) }
+    public static var BUSY: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_BUSY) }
     /// ICAL_FBTYPE_BUSYUNAVAILABLE
-    public static var BUSYUNAVAILABLE: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_BUSYUNAVAILABLE) }
+    public static var BUSYUNAVAILABLE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_BUSYUNAVAILABLE) }
     /// ICAL_FBTYPE_BUSYTENTATIVE
-    public static var BUSYTENTATIVE: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_BUSYTENTATIVE) }
+    public static var BUSYTENTATIVE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_BUSYTENTATIVE) }
     /// ICAL_FBTYPE_NONE
-    public static var NONE: Parameter.FBType { .init(rawValue: ICAL_FBTYPE_NONE) }
+    public static var NONE: Parameter.FbType { .init(rawValue: ICAL_FBTYPE_NONE) }
 
 }
 

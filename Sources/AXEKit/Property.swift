@@ -33,7 +33,7 @@ public class Property: NSObject {
     // MARK: - 私有属性
     
     /// icalproperty
-    private let rawValue: icalproperty
+    internal let rawValue: icalproperty
   
     // MARK: - 生命周期
     
@@ -65,11 +65,36 @@ extension Property {
     
     // rfc5545
     /// - Returns: String
-    internal func rfc5545() -> String {
+    public func rfc5545() -> String {
         if let value = icalproperty_as_ical_string(rawValue) {
             return .init(cString: value)
         } else {
             return ""
         }
     }
+    
+    /// add parameter
+    /// - Parameter parameter: Parameter
+    public func add(_ parameter: Parameter) {
+        icalproperty_add_parameter(rawValue, parameter.rawValue)
+    }
+    
+    /// remove parameter
+    /// - Parameter parameter: Parameter
+    public func remove(_ parameter: Parameter) {
+        icalproperty_remove_parameter_by_ref(rawValue, parameter.rawValue)
+    }
+    
+    /// remove by kind
+    /// - Parameter kind: Parameter.Kind
+    public func remove(by kind: Parameter.Kind) {
+        icalproperty_remove_parameter_by_kind(rawValue, kind.rawValue)
+    }
+    
+    /// remove by name
+    /// - Parameter name: String
+    public func remove(by name: String) {
+        icalproperty_remove_parameter_by_name(rawValue, name)
+    }
+    
 }

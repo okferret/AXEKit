@@ -29,7 +29,7 @@ public class Value: NSObject {
     // MARK: - 私有属性
     
     /// icalvalue
-    private let rawValue: icalvalue
+    internal let rawValue: icalvalue
     
     // MARK: - 生命周期
     
@@ -61,7 +61,7 @@ extension Value {
     
     // rfc5545
     /// - Returns: String
-    internal func rfc5545() -> String {
+    public func rfc5545() -> String {
         if let value = icalvalue_as_ical_string(rawValue) {
             return .init(cString: value)
         } else {
