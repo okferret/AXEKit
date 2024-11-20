@@ -80,5 +80,9 @@ import Testing
         """
     
     let obj: Calendar = try .parse(ics_text)
-    print(obj)
+    // print(obj)
+
+    let element: BusyType = .init(newValue: .BUSYUNAVAILABLE)
+    
+    print(element)
 }

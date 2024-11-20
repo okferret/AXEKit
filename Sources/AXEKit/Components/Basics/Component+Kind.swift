@@ -1,5 +1,5 @@
 //
-//  Component+Extends.swift
+//  Component+Kind.swift
 //  AXEKit
 //
 //  Created by okferret on 2024/11/15.
@@ -8,8 +8,17 @@
 import libical
 
 extension Component {
-    /// Wrap<icalcomponent_kind>
-     public typealias Kind = Wrap<icalcomponent_kind>
+    /// icalcomponent_kind
+    public struct Kind: RawRepresentable, Hashable {
+        public typealias RawValue = icalcomponent_kind
+        public let rawValue: icalcomponent_kind
+        public init(rawValue: icalcomponent_kind) {
+            self.rawValue = rawValue
+        }
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(rawValue.rawValue)
+        }
+    }
 }
 
 extension Component.Kind {

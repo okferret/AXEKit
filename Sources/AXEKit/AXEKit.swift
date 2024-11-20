@@ -61,28 +61,6 @@ func icalproperty_get_parameters(from property: icalproperty, kind: icalparamete
     return elements
 }
 
-// MARK: - Wrap
-public struct Wrap<T>: Hashable where T: RawRepresentable<UInt32> {
-    /// T
-    internal let rawValue: T
-    
-    /// hash
-    /// - Parameter hasher: Hasher
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(rawValue.rawValue)
-    }
-    
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    
-}
-
 /// Error
 public enum AXError: Error, LocalizedError {
     case custom(_ text: String)

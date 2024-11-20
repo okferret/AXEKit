@@ -1,5 +1,5 @@
 //
-//  Value+Extends.swift
+//  Value+Kind.swift
 //  AXEKit
 //
 //  Created by okferret on 2024/11/15.
@@ -10,8 +10,17 @@ import libical
 
 // MARK: - icalvalue_kind
 extension Value {
-    /// Wrap<icalvalue_kind>
-    public typealias Kind = Wrap<icalvalue_kind>
+    /// icalvalue_kind
+    public struct Kind: RawRepresentable, Hashable {
+        public typealias RawValue = icalvalue_kind
+        public let rawValue: icalvalue_kind
+        public init(rawValue: icalvalue_kind) {
+            self.rawValue = rawValue
+        }
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(rawValue.rawValue)
+        }
+    }
 }
 
 extension Value.Kind {
