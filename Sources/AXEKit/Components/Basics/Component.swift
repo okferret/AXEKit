@@ -23,7 +23,7 @@ public class Component: NSObject {
     }
     /// Array<Property>
     public var properties: Array<Property> {
-        return Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .init(rawValue: $0) }
+        return Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     /// description
     public override var description: String {
