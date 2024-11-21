@@ -1,5 +1,5 @@
 //
-//  Property+Kind.swift
+//  Prop+Kind.swift
 //  AXEKit
 //
 //  Created by okferret on 2024/11/20.

@@ -5220,7 +5220,7 @@ LIBICAL_ICAL_EXPORT void icalcomponent_set_dtend(icalcomponent *comp, struct ica
  *
  *  @param comp Valid calendar component.
  *
- *  Uses the DUE: property if it exists, otherwise we calculate the DUE
+ *  Uses the DUE: Property if it exists, otherwise we calculate the DUE
  *  value by adding the task's duration to the DTSTART time.
  */
 LIBICAL_ICAL_EXPORT struct icaltimetype icalcomponent_get_due(icalcomponent *comp);
