@@ -2,16 +2,35 @@
 //  Property+PollCompletion.swift
 //  AXEKit
 //
-//  Created by okferret on 2024/11/20.
+//  Created by okferret on 2024/11/21.
 //
 
 import Foundation
 import libical
 
-// MARK: - icalproperty_pollcompletion
 extension Property {
-    /// icalproperty_pollcompletion
-    public struct PollCompletion: RawRepresentable, Hashable {
+    
+    /// PollCompletion
+    public class PollCompletion: Property {
+        
+        /// Value
+        public var value: Value {
+            get { icalproperty_get_pollcompletion(rawValue).hub.wrap() }
+            set { icalproperty_set_pollcompletion(rawValue, newValue.rawValue) }
+        }
+        
+        /// 构建
+        /// - Parameter value: Value
+        public convenience init(_ value: Value) {
+            self.init(rawValue: icalproperty_new_pollcompletion(value.rawValue))
+        }
+    }
+}
+
+extension Property.PollCompletion {
+    
+    /// Value
+    public struct Value: RawRepresentable, Hashable {
         public typealias RawValue = icalproperty_pollcompletion
         public let rawValue: icalproperty_pollcompletion
         public init(rawValue: icalproperty_pollcompletion) {
@@ -20,30 +39,28 @@ extension Property {
         public func hash(into hasher: inout Hasher) {
             hasher.combine(rawValue.rawValue)
         }
-    }
-}
+        /// ICAL_POLLCOMPLETION_X
+        public static var X: Value { .init(rawValue: ICAL_POLLCOMPLETION_X) }
+        /// ICAL_POLLCOMPLETION_SERVER
+        public static var SERVER: Value { .init(rawValue: ICAL_POLLCOMPLETION_SERVER) }
+        /// ICAL_POLLCOMPLETION_SERVERSUBMIT
+        public static var SERVERSUBMIT: Value { .init(rawValue: ICAL_POLLCOMPLETION_SERVERSUBMIT) }
+        /// ICAL_POLLCOMPLETION_SERVERCHOICE
+        public static var SERVERCHOICE: Value { .init(rawValue: ICAL_POLLCOMPLETION_SERVERCHOICE) }
+        /// ICAL_POLLCOMPLETION_CLIENT
+        public static var CLIENT: Value { .init(rawValue: ICAL_POLLCOMPLETION_CLIENT) }
+        /// ICAL_POLLCOMPLETION_NONE
+        public static var NONE: Value { .init(rawValue: ICAL_POLLCOMPLETION_NONE) }
 
-extension Property.PollCompletion {
-    /// ICAL_POLLCOMPLETION_X
-    public static var X: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_X) }
-    /// ICAL_POLLCOMPLETION_SERVER
-    public static var SERVER: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_SERVER) }
-    /// ICAL_POLLCOMPLETION_SERVERSUBMIT
-    public static var SERVERSUBMIT: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_SERVERSUBMIT) }
-    /// ICAL_POLLCOMPLETION_SERVERCHOICE
-    public static var SERVERCHOICE: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_SERVERCHOICE) }
-    /// ICAL_POLLCOMPLETION_CLIENT
-    public static var CLIENT: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_CLIENT) }
-    /// ICAL_POLLCOMPLETION_NONE
-    public static var NONE: Property.PollCompletion { .init(rawValue: ICAL_POLLCOMPLETION_NONE) }
+    }
 }
 
 extension icalproperty_pollcompletion: CompatibleValue {}
 extension CompatibleWrapper where Base == icalproperty_pollcompletion {
+    
     /// wrap
-    /// - Returns: Property.PollCompletion
-    internal func wrap() -> Property.PollCompletion {
+    /// - Returns: Property.PollCompletion.Value
+    internal func wrap() -> Property.PollCompletion.Value {
         return .init(rawValue: base)
     }
 }
-
