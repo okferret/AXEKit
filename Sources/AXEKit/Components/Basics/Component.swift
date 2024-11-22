@@ -88,12 +88,14 @@ extension Component {
     /// - Parameter property: Property
     public func add(_ property: Property) {
         icalcomponent_add_property(rawValue, property.rawValue)
+        properties = Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// remove property
     /// - Parameter property: Property
     public func remove(_ property: Property) {
         icalcomponent_remove_property(rawValue, property.rawValue)
+        properties = Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// count for kind
@@ -107,11 +109,13 @@ extension Component {
     /// - Parameter component: Component
     public func add(_ component: Component) {
         icalcomponent_add_component(rawValue, component.rawValue)
+        components = Set(Component.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_components(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     /// remove componnet
     /// - Parameter componnet: Component
     public func remove(_ componnet: Component) {
         icalcomponent_remove_component(rawValue, componnet.rawValue)
+        components = Set(Component.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_components(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// count for kind
@@ -125,8 +129,9 @@ extension Component {
     /// - Parameter component: Component
     public func merge(_ component: Component) {
         icalcomponent_merge_component(rawValue, component.rawValue)
+        components = Set(Component.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_components(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
- 
+    
 }
 
 extension Component {

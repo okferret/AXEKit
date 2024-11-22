@@ -75,24 +75,28 @@ extension Property {
     /// - Parameter parameter: Parameter
     public func add(_ parameter: Parameter) {
         icalproperty_add_parameter(rawValue, parameter.rawValue)
+        parameters = Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// remove parameter
     /// - Parameter parameter: Parameter
     public func remove(_ parameter: Parameter) {
         icalproperty_remove_parameter_by_ref(rawValue, parameter.rawValue)
+        parameters = Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// remove by kind
     /// - Parameter kind: Parameter.Kind
     public func remove(by kind: Parameter.Kind) {
         icalproperty_remove_parameter_by_kind(rawValue, kind.rawValue)
+        parameters = Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
     
     /// remove by name
     /// - Parameter name: String
     public func remove(by name: String) {
         icalproperty_remove_parameter_by_name(rawValue, name)
+        parameters = Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
     }
 }
 
