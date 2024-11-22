@@ -58,7 +58,7 @@ public class Component: NSObject {
     /// 构建
     /// - Parameter component: Component
     public convenience init(component: Component) {
-        self.init(rawValue: component.rawValue)
+        self.init(rawValue: icalcomponent_new_clone(component.rawValue))
     }
     
     /// 构建
