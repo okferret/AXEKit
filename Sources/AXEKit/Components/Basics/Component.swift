@@ -14,17 +14,11 @@ public class Component: NSObject {
     // MARK: - 公开属性
     
     /// Kind
-    public var kind: Kind {
-        return .init(rawValue: icalcomponent_isa(rawValue))
-    }
+    public let kind: Kind
     /// Array<Component>
-    public var components: Array<Component> {
-        return Set(Component.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_components(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
-    }
+    public private(set) var components: Array<Component>
     /// Array<Property>
-    public var properties: Array<Property> {
-        return Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
-    }
+    public private(set) var properties: Array<Property>
     /// description
     public override var description: String {
         if let value = icalcomponent_as_ical_string(rawValue) {
@@ -45,6 +39,9 @@ public class Component: NSObject {
     /// - Parameter rawValue: icalcomponent
     internal init(rawValue: icalcomponent) {
         self.rawValue = rawValue
+        self.kind = .init(rawValue: icalcomponent_isa(rawValue))
+        self.components = Set(Component.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_components(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
+        self.properties = Set(Property.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalcomponent_get_properties(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
         super.init()
     }
     
@@ -132,3 +129,46 @@ extension Component {
  
 }
 
+extension Component {
+    
+    /// from cmpt
+    /// - Parameter cmpt: icalcomponent
+    /// - Returns: Component
+    internal static func from(_ cmpt: icalcomponent) -> Component {
+        switch icalcomponent_isa(cmpt).hub.wrap() {
+        case .ANY:              return Component(rawValue: cmpt)
+        case .XROOT:            return Component(rawValue: cmpt)
+        case .XATTACH:          return Component(rawValue: cmpt)
+        case .VEVENT:           return VEvent(rawValue: cmpt)
+        case .VTODO:            return VTodo(rawValue: cmpt)
+        case .VJOURNAL:         return VJournal(rawValue: cmpt)
+        case .VCALENDAR:        return VCalendar(rawValue: cmpt)
+        case .VAGENDA:          return VAgenda(rawValue: cmpt)
+        case .VFREEBUSY:        return VFreeBusy(rawValue: cmpt)
+        case .VALARM:           return VAlarm(rawValue: cmpt)
+        case .XAUDIOALARM:      return Component(rawValue: cmpt)
+        case .XDISPLAYALARM:    return Component(rawValue: cmpt)
+        case .XEMAILALARM:      return Component(rawValue: cmpt)
+        case .XPROCEDUREALARM:  return Component(rawValue: cmpt)
+        case .VTIMEZONE:        return VTimeZone(rawValue: cmpt)
+        case .XSTANDARD:        return XStandard(rawValue: cmpt)
+        case .XDAYLIGHT:        return XDaylight(rawValue: cmpt)
+        case .X:                return Component(rawValue: cmpt)
+        case .VSCHEDULE:        return Component(rawValue: cmpt)
+        case .VQUERY:           return VQuery(rawValue: cmpt)
+        case .VREPLY:           return Component(rawValue: cmpt)
+        case .VCAR:             return Component(rawValue: cmpt)
+        case .VCOMMAND:         return Component(rawValue: cmpt)
+        case .XLICINVALID:      return Component(rawValue: cmpt)
+        case .XLICMIMEPART:     return Component(rawValue: cmpt)
+        case .VAVAILABILITY:    return VAvailability(rawValue: cmpt)
+        case .XAVAILABLE:       return XAvailable(rawValue: cmpt)
+        case .VPOLL:            return VPoll(rawValue: cmpt)
+        case .VVOTER:           return VVoter(rawValue: cmpt)
+        case .XVOTE:            return XVote(rawValue: cmpt)
+        case .VPATCH:           return VPatch(rawValue: cmpt)
+        case .XPATCH:           return XPatch(rawValue: cmpt)
+        default:                return Component(rawValue: cmpt)
+        }
+    }
+}

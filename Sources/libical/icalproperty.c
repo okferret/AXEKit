@@ -178,6 +178,10 @@ icalproperty *icalproperty_new_from_string(const char *str)
 
 void icalproperty_free(icalproperty *p)
 {
+    if ((strcmp(p->id, "prop") != 0) || p->kind == ICAL_NO_PROPERTY) {
+        return;
+    }
+    
     icalparameter *param;
 
     icalerror_check_arg_rv((p != 0), "prop");

@@ -178,6 +178,11 @@ icalcomponent *icalcomponent_new_x(const char *x_name)
 
 void icalcomponent_free(icalcomponent *c)
 {
+    
+    if ((strcmp(c->id, "comp") != 0) || c->kind == ICAL_NO_COMPONENT) {
+        return;
+    }
+   
     icalproperty *prop;
     icalcomponent *comp;
 

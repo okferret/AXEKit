@@ -14,13 +14,9 @@ public class Property: NSObject {
     // MARK: - 公开属性
     
     /// Kind
-    public var kind: Kind {
-        return .init(rawValue: icalproperty_isa(rawValue))
-    }
+    public let kind: Kind
     /// Array<Parameter>
-    public var parameters: Array<Parameter> {
-        return Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .init(rawValue: $0) }
-    }
+    public private(set) var parameters: Array<Parameter>
     /// String
     public override var description: String {
         if let newValue = icalproperty_as_ical_string(rawValue) {
@@ -41,6 +37,8 @@ public class Property: NSObject {
     /// - Parameter rawValue: icalproperty
     internal init(rawValue: icalproperty) {
         self.rawValue = rawValue
+        self.kind = .init(rawValue: icalproperty_isa(rawValue))
+        self.parameters = Set(Parameter.Kind.allCases).subtracting([.ANY]).reduce([]) { $0 + icalproperty_get_parameters(from: rawValue, kind: $1.rawValue) }.map { .from($0) }
         super.init()
     }
     
@@ -57,7 +55,7 @@ public class Property: NSObject {
     }
     
     deinit {
-        icalvalue_free(rawValue)
+        icalproperty_free(rawValue)
     }
 }
 

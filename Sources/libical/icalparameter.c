@@ -61,6 +61,10 @@ void icalparameter_free(icalparameter *param)
 {
 /*  Comment out the following as it always triggers, even when parameter is non-zero
     icalerror_check_arg_rv((parameter==0),"parameter");*/
+    
+    if ((strcmp(param->id, "para") != 0) || param->kind == ICAL_NO_PARAMETER) {
+        return;
+    }
 
     if (param->parent != 0) {
         return;
@@ -76,6 +80,7 @@ void icalparameter_free(icalparameter *param)
 
     memset(param, 0, sizeof(icalparameter));
 
+    param->kind = ICAL_NO_PARAMETER;
     param->parent = 0;
     param->id[0] = 'X';
     free(param);
