@@ -10,7 +10,7 @@ let package = Package(
         .library(
             name: "AXEKit",
             targets: ["AXEKit"]),
-        .library(name: "libical", targets: ["libical"])
+        //.library(name: "libical", targets: ["libical"])
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
