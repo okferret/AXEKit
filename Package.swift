@@ -7,10 +7,7 @@ let package = Package(
     name: "AXEKit",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "AXEKit",
-            targets: ["AXEKit"]),
-        //.library(name: "libical", targets: ["libical"])
+        .library(name: "AXEKit", targets: ["AXEKit"])
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -28,7 +25,6 @@ let package = Package(
                 linkerSettings: [
                     .linkedLibrary("c++"),
                     .linkedLibrary("z"),
-                    .unsafeFlags(["-Lpath/to/libical"])
                 ]),
         .target(name: "AXEKit", dependencies: [.target(name: "libical")], resources: [.copy("../zoneinfo")]),
         .testTarget(name: "AXEKitTests", dependencies: ["AXEKit"])
