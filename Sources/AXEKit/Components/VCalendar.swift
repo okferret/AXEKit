@@ -23,7 +23,7 @@ extension VCalendar {
     /// 解析数据
     /// - Parameter rfc5545: String
     /// - Returns: Calendar
-    internal static func parse(_ rfc5545: String) throws -> VCalendar {
+    public static func parse(_ rfc5545: String) throws -> VCalendar {
         let cmpt: VCalendar = try .init(rfc5545: rfc5545)
         guard cmpt.kind == .VCALENDAR else { throw AXError.custom("类型错误") }
         return cmpt
